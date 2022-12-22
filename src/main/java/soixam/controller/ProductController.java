@@ -36,7 +36,7 @@ public class ProductController {
             return new ResponseEntity<>(new ResponseMessage("product_invalid"),HttpStatus.OK);
         }
 
-        Long idCate = product.getCategory().getIdCategory();
+        Long idCate = product.getCategory().getId();
         Optional<Category> categoryOptional = categoryService.findById(idCate);
         if (!categoryOptional.isPresent()) {
             return new ResponseEntity<>(new ResponseMessage("cate_not"), HttpStatus.NOT_FOUND);
@@ -56,7 +56,7 @@ public class ProductController {
             productOptional.get().setAvatar(product.getAvatar());
             productOptional.get().setQuantity(product.getQuantity());
 
-            Long idCate = product.getCategory().getIdCategory();
+            Long idCate = product.getCategory().getId();
             Optional<Category> categoryOptional = categoryService.findById(idCate);
             if (!categoryOptional.isPresent()){
                 return new ResponseEntity<>(new ResponseMessage("cate_not"),HttpStatus.NOT_FOUND);
